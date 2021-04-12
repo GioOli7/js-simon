@@ -13,7 +13,7 @@ $('document').ready(function() {
     var userNumbers = [];       // array che conterrà i 5 numeri che il giocatore deciderà di digitare
     var indovinati = 0;         // la quantità di numeri indovintati dal giocatore
     var guessedNumbers = [];    // array che conterrà la lista dei numeri indovinati dal giocatore
-    var waitTime = 10000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
+    var waitTime = 30000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
 
     // genero 5 numeri casuali unici
     for (var i = 0; i < ripetizioni; i++) {
