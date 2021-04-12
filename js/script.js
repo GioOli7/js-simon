@@ -13,7 +13,7 @@ $('document').ready(function() {
     var userNumbers = [];       // array che conterrà i 5 numeri che il giocatore deciderà di digitare
     var indovinati = 0;         // la quantità di numeri indovintati dal giocatore
     var guessedNumbers = [];    // array che conterrà la lista dei numeri indovinati dal giocatore
-    var waitTime = 30000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
+    var waitTime = 10000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
 
     // genero 5 numeri casuali unici
     for (var i = 0; i < ripetizioni; i++) {
@@ -75,6 +75,43 @@ $('document').ready(function() {
         }
     }, waitTime)
 
+    // piccolo countdown :P
+    var seconds = waitTime / 1000;
+    if (waitTime <= 10000) {
+        console.log(`Hey!! Modificare il tempo di attesa non vale :P :P`);
+    }
+    var sec = setInterval(function() {
+        seconds--;
+        switch (seconds) {
+            case 29:
+                console.log('Countdown...');
+                break;
+            case 20:
+                console.log(`Mancano ${seconds} secondi...`);
+                break;
+            case 16:
+                console.log('Si lo so, correggere gli esercizi degli studenti boolean può essere molto noioso a volte...');
+                break;
+            case 10:
+                console.log(`Ci siamo quasi, ${seconds} secondi...`);
+                break;
+            case 5:
+                console.log(`${seconds} secondi..`);
+                break;
+            case 4:
+                console.log(`${seconds}`);
+                break;
+            case 3:
+                console.log(`${seconds}`);
+                break;
+            case 2:
+                console.log(`${seconds}`);
+                break;
+            case 1:
+                console.log(`${seconds}`);
+                break;
+        }
+    }, 1000)
 
 
     // FUNZIONI
