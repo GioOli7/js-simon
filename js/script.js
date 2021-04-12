@@ -13,6 +13,7 @@ $('document').ready(function() {
     var userNumbers = [];       // array che conterrà i 5 numeri che il giocatore deciderà di digitare
     var indovinati = 0;         // la quantità di numeri indovintati dal giocatore
     var guessedNumbers = [];    // array che conterrà la lista dei numeri indovinati dal giocatore
+    var waitTime = 30000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
 
     // genero 5 numeri casuali unici
     for (var i = 0; i < ripetizioni; i++) {
@@ -22,10 +23,11 @@ $('document').ready(function() {
         }
         startNumbers[i] = rand;
     }
-    console.log(startNumbers);
+    // esponi questo log per debug
+    // console.log(startNumbers);
 
     //alert con i 5 numeri generati
-    alert(startNumbers)
+    alert(startNumbers);
 
     // una volta premuto ok sull'alert
     // parte un timer 30 secondi
@@ -71,8 +73,7 @@ $('document').ready(function() {
             console.log(`Totale numeri indovinati: ${indovinati}`);
             console.log(`Lista numeri indovinati: ${guessedNumbers}`);
         }
-    },30000)
-
+    }, waitTime)
 
 
 
