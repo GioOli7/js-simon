@@ -14,12 +14,31 @@ $('document').ready(function() {
     var indovinati = 0;         // la quantità di numeri indovintati dal giocatore
     var guessedNumbers = [];    // array che conterrà la lista dei numeri indovinati dal giocatore
     var waitTime = 30000;       // tempo di attesa in millisecondi prima di permettere al giocatore di digitare i numeri
+    var livello = 0;            // Livello di difficoltà
+    var randMax = 20;           // Range massimo della generazione del numero casuale
+
+    // livello di difficoltà
+    livello = parseInt(prompt("Scegli il livello di difficoltà del gioco\nAumentando la difficoltà aumenteranno i numeri da indovinare\nDigita 0 = Facile\nDigita 1 = Medio\n Digita 2 = Difficile"))
+    switch (livello) {
+        case 0: 
+            ripetizioni = 5;
+            randMax = 20;
+            break;
+        case 1:
+            ripetizioni = 7;
+            randMax = 35;
+            break;
+        case 2:
+            ripetizioni = 10;
+            randMax = 100;
+            break;
+    }
 
     // genero 5 numeri casuali unici
     for (var i = 0; i < ripetizioni; i++) {
-        rand = random(1, 20);
+        rand = random(1, randMax);
         while(startNumbers.includes(rand)) {
-            rand = random(1, 20);
+            rand = random(1, randMax);
         }
         startNumbers[i] = rand;
     }
@@ -36,13 +55,13 @@ $('document').ready(function() {
     var timer = setTimeout(function() {
 
         // dopo 30 secondi chiedi all'utente di inserire i 5 numeri
-        console.log("OK, ora digita i 5 numeri apparsi all'inizio del gioco");
+        console.log(`OK, ora digita i ${ripetizioni} numeri apparsi all'inizio del gioco`);
 
         for (var i = 1; i <= ripetizioni; i++) {
-            var num = parseInt(prompt(`inserisci il ${i} numero`));
+            var num = parseInt(prompt(`inserisci il ${i} numero su ${ripetizioni} \n(range da 1 a ${randMax})`));
             // mi assicuto che il giocatore digiti numeri diversi dai precedenti
-            while(userNumbers.includes(num) || num < 1 || isNaN(num)) {
-                num = parseInt(prompt(`inserisci il ${i} numero`));
+            while(userNumbers.includes(num) || num < 1 || num > randMax || isNaN(num)) {
+                num = parseInt(prompt(`inserisci il ${i} numero su ${ripetizioni} \n(range da 1 a ${randMax})`));
             }
             userNumbers.push(num);
         }
@@ -65,8 +84,8 @@ $('document').ready(function() {
         // mostro risultato del gioco
         if (indovinati < 1) {
             console.log(`Peccato, non ha indovinato nessun numero! :(`);
-        } else if (indovinati == 5) {
-            console.log(`Sei un mostro, hai indovinato tutti e 5 i numeri!!`);
+        } else if (indovinati == ripetizioni) {
+            console.log(`Sei un mostro, hai indovinato tutti e ${ripetizioni} i numeri!!`);
             console.log(`Lista numeri indovinati: ${guessedNumbers}`);
         } else {
             console.log(`Non male, vediamo come è andata:`);
